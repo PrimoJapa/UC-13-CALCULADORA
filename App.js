@@ -81,6 +81,8 @@ export default function App() {
             <Text style={[styles.textButton, {color: typeof(button) === 'number' ? 'black': '#0093a6'}]}>{button}</Text>
           </TouchableOpacity>
         )}
+         </View>
+        </View>
       </View>
     </View>
   );
