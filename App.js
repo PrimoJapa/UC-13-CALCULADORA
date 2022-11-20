@@ -15,17 +15,30 @@ export default function App() {
     const fistNumber = parseFloat(splitNumbers[0]);
     const lastNumber = parseFloat(splitNumbers[2]);
     const operator = splitNumbers[1];
-
+    const OperatorPorcentagem = splitNumbers[3];
+    
     // Faz ação referente tecla pressionada
     switch (operator) {
       case '+':
-        setCurrentNumber((fistNumber + lastNumber).toString());
+        if (OperatorPorcentagem === '%') {
+          setCurrentNumber((fistNumber * lastNumber) / 100 + fistNumber);
+        } else {
+          setCurrentNumber((fistNumber + lastNumber).toString());
+        }
         return;
       case '-':
-        setCurrentNumber((fistNumber - lastNumber).toString());
+        if (OperatorPorcentagem === '%') {
+          setCurrentNumber(fistNumber - (fistNumber * lastNumber) / 100);
+        } else {
+          setCurrentNumber((fistNumber - lastNumber).toString());
+        }
         return;
       case 'x':
-        setCurrentNumber((fistNumber * lastNumber).toString())
+        if (OperatorPorcentagem === '%') {
+          setCurrentNumber((lastNumber / 100) * fistNumber);
+        } else {
+          setCurrentNumber((fistNumber * lastNumber).toString());
+        }
         return;
       case '/': 
         setCurrentNumber((fistNumber / lastNumber).toString())
@@ -57,6 +70,9 @@ export default function App() {
         calculator();
         return;
       case '+/-':
+        return;
+      case '%':
+        setCurrentNumber(currentNumber + ' ' + buttonPressed);
         return;
     }
 
