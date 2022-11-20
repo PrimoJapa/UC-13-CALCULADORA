@@ -31,7 +31,7 @@ export default function App() {
           setCurrentNumber(fistNumber - (fistNumber * lastNumber) / 100);
         } else {
           setCurrentNumber((fistNumber - lastNumber).toString());
-        }
+        } 
         return;
       case 'x':
         if (OperatorPorcentagem === '%') {
@@ -50,12 +50,12 @@ export default function App() {
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
     if(
       buttonPressed === '+' || 
-      buttonPressed === "-" || 
-      buttonPressed === "x" || 
-      buttonPressed === "/" 
+      buttonPressed === '-' || 
+      buttonPressed === 'x' || 
+      buttonPressed === '/' 
     ) {
       setCurrentNumber(currentNumber + ' ' + buttonPressed + ' ');
-      return
+      return;
     }
     switch (buttonPressed) {
       case 'DEL':
@@ -70,6 +70,11 @@ export default function App() {
         calculator();
         return;
       case '+/-':
+        if (currentNumber >= 0) {
+          setCurrentNumber('-' + currentNumber);
+        } else {
+          setCurrentNumber((currentNumber) * (0-1));
+        }
         return;
       case '%':
         setCurrentNumber(currentNumber + ' ' + buttonPressed);
